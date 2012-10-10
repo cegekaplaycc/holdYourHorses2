@@ -7,7 +7,15 @@
 GET     /                           controllers.Application.index()
 
 
-GET     /@mockups/dashboard         controllers.Mockups.dashboard()
+GET     /@mockups                       controllers.Mockups.dashboard()
+GET     /@mockups/                      controllers.Mockups.dashboard()
+GET     /@mockups/buySupplies           controllers.Mockups.buySupplies()
+GET     /@mockups/dashboard             controllers.Mockups.dashboard()
+GET     /@mockups/futureRaceDetail      controllers.Mockups.futureRaceDetail()
+GET     /@mockups/futureRaceOverview    controllers.Mockups.futureRaceOverview()
+GET     /@mockups/horseDetail           controllers.Mockups.horseDetail()
+GET     /@mockups/horseMarket           controllers.Mockups.horseMarket()
+GET     /@mockups/pastRaceDetail        controllers.Mockups.pastRaceDetail()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
