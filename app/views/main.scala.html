@@ -1,0 +1,67 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Hold Your Horses - @title</title>
+        <meta name="author" content="Cegeka">
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <link rel="stylesheet/less" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap/bootstrap.less")' />
+        <style type="text/css">
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+        </style>
+
+
+        <link rel="shortcut icon" type="image/png" href='@routes.Assets.at("images/favicon.png")'>
+        <script src='@routes.Assets.at("javascripts/jquery-1.7.1.min.js")' type='text/javascript'></script>
+        <script src='@routes.Assets.at("javascripts/bootstrap/bootstrap-dropdown.js")'type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/bootstrap/bootstrap-tab.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/bootstrap/bootstrap-alert.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/bootstrap/bootstrap-modal.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/bootstrap/bootstrap-transition.js")' type="text/javascript"></script>
+        <script src='@routes.Assets.at("javascripts/less-1.2.1.min.js")' type="text/javascript"></script>
+
+    </head>
+    <body>
+
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="@routes.Application.index()">Hold your Horses <sup><span class="label label-warning">beta</span></sup></a>
+                <div class="nav-collapse">
+
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="#" id="menuDashboardLink">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#" id="menuFoodmarketLink">FoodMarket</a>
+                        </li>
+                    </ul>
+                    <p class="navbar-text pull-right">Logged in as UserName (<a href="#">Log out</a>)</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        @content
+
+        <footer>
+            <hr />
+            <p>&copy; Cegeka 2012</p>
+        </footer>
+    </div>
+    </body>
+</html>
+
