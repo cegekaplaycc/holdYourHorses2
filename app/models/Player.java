@@ -1,9 +1,11 @@
 package models;
 
+import static javax.persistence.CascadeType.PERSIST;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-import com.avaje.ebean.Ebean;
 import play.db.ebean.Model;
 
 @Entity
@@ -17,6 +19,10 @@ public class Player extends Model {
     public String password;
     public int cashAmount;
 
+	@OneToOne(cascade = PERSIST)
+	public Stock stock = new Stock();
+
+    
     public Long getId() {
         return id;
     }
