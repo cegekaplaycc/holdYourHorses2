@@ -7,7 +7,6 @@ import java.util.List;
 import org.junit.Test;
 
 import util.TheNewAbstractIntegrationTestCase;
-
 import com.avaje.ebean.Ebean;
 
 public class HorseIntegrationTest extends TheNewAbstractIntegrationTestCase {

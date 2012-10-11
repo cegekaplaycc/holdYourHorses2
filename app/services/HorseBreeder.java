@@ -1,8 +1,8 @@
 package services;
 
-import com.avaje.ebean.Ebean;
-
 import models.Horse;
+
+import com.avaje.ebean.Ebean;
 
 
 public class HorseBreeder {

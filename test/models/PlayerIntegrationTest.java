@@ -5,7 +5,6 @@ import static org.fest.assertions.Assertions.assertThat;
 import org.junit.Test;
 
 import util.TheNewAbstractIntegrationTestCase;
-
 import com.avaje.ebean.Ebean;
 
 public class PlayerIntegrationTest extends TheNewAbstractIntegrationTestCase {
