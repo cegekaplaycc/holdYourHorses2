@@ -1,24 +1,28 @@
 package controllers;
 
-import com.google.common.collect.Maps;
-import models.Player;
-import org.apache.http.HttpStatus;
-import org.fest.assertions.Assertions;
-import org.junit.Ignore;
-import org.junit.Test;
-import play.Routes;
-import play.data.Form;
-import play.mvc.Result;
-import play.test.Helpers;
-import scala.App;
+import static org.fest.assertions.Assertions.assertThat;
+import static play.mvc.Http.Status.OK;
+import static play.mvc.Http.Status.UNAUTHORIZED;
+import static play.test.Helpers.POST;
+import static play.test.Helpers.callAction;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.fakeRequest;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.routeAndCall;
+import static play.test.Helpers.running;
+import static play.test.Helpers.status;
 
-import javax.xml.ws.Response;
 import java.util.Map;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static play.mvc.Http.Status.UNAUTHORIZED;
-import static play.test.Helpers.*;
-import static play.test.Helpers.inMemoryDatabase;
+import models.Player;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+import play.mvc.Result;
+import play.test.Helpers;
+
+import com.google.common.collect.Maps;
 
 public class ApplicationTest {
 

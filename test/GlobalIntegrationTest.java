@@ -1,13 +1,8 @@
-import actors.RaceScheduler;
-import akka.actor.ActorRef;
-import akka.actor.DeadLetter;
-import akka.actor.EmptyLocalActorRef;
-import akka.actor.Props;
 import org.junit.Test;
+
 import play.libs.Akka;
 import util.TheNewAbstractIntegrationTestCase;
-
-import static org.fest.assertions.Assertions.assertThat;
+import akka.actor.ActorRef;
 
 
 public class GlobalIntegrationTest extends TheNewAbstractIntegrationTestCase {
