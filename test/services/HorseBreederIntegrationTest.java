@@ -7,6 +7,8 @@ import java.util.List;
 
 import models.Horse;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import services.HorseBreeder;
@@ -15,6 +17,14 @@ import com.avaje.ebean.Ebean;
 
 public class HorseBreederIntegrationTest {
 
+	@Rule
+	public ServiceMocker serviceMocker = ServiceMocker.create();
+
+	@Before
+	public void setUp() {
+		serviceMocker.mockHorseBreeder();
+	}
+	
 	@Test
 	public void givenNoAvailableHorses_WhenBreedingAvailableHorses_ThenMaxAmountOfHorsesShouldBeAvailable() {
 		running(fakeApplication(), new Runnable() {
