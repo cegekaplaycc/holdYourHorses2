@@ -4,6 +4,7 @@ import models.Player;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.html.dashboard;
 import views.html.index;
 
 public class Application extends Controller {
@@ -16,9 +17,13 @@ public class Application extends Controller {
         Form<Player> playerForm = form(Player.class);
         Player player = playerForm.bindFromRequest().get();
         if(player.exists()) {
-            throw new RuntimeException("ok");
+            return dashboard();
         }
-        throw new RuntimeException("user bestaat niet");
+       return unauthorized();
+    }
+
+    public static Result dashboard() {
+        return ok(dashboard.render());
     }
 
 }

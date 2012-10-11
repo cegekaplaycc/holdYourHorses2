@@ -1,3 +1,4 @@
+import models.Player;
 import play.Application;
 import play.GlobalSettings;
 import services.ServiceLocator;
