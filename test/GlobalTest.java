@@ -13,7 +13,8 @@ public class GlobalTest {
 	
 	@Test
 	public void onStart_BreedsAvailableHorses() {
-		serviceMocker.mockRandomHorseBreeder();
+		serviceMocker.mockHorseBreeder();
+		serviceMocker.mockPlayerFactory();
 		
 		new Global().onStart(null);
 		
