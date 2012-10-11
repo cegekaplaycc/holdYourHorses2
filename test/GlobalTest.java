@@ -19,29 +19,30 @@ public class GlobalTest {
 
 	@Rule
 	public ServiceMocker serviceMocker = ServiceMocker.create();
-	
+
 	@Mock
 	private Application application;
-	
+
 	@Before
 	public void setUp() {
 		serviceMocker.mockHorseBreeder();
 		serviceMocker.mockPlayerFactory();
+		serviceMocker.mockRaceScheduler();
 	}
-	
+
 	@Test
 	public void onStart_BreedsAvailableHorses() {
 		new Global().onStart(application);
-		
+
 		verify(horseBreeder).breedAvailableHorses();
 	}
-	
+
 	@Test
 	public void onStart_WhenInTestMode_DoenstDoAnyStartupStuff() {
 		when(application.isTest()).thenReturn(true);
-		
+
 		new Global().onStart(application);
-		
+
 		Mockito.verifyZeroInteractions(horseBreeder, playerFactory);
 	}
 

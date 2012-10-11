@@ -1,12 +1,14 @@
 package models;
 
 import static com.google.common.collect.Sets.newHashSet;
+import static javax.persistence.CascadeType.PERSIST;
 
 import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
 import exceptions.HoldYourHorsesException;
@@ -24,6 +26,9 @@ public class Player extends Model {
 
 	@OneToMany(mappedBy = "player")
 	public Set<Horse> horses = newHashSet();
+
+	@OneToOne(cascade = PERSIST)
+	public Stock stock = new Stock();
 
 	public Long getId() {
 		return id;
