@@ -1,11 +1,9 @@
 package models;
 
-import com.avaje.ebean.Ebean;
-import org.apache.commons.lang3.StringUtils;
-import play.db.ebean.Model;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
+import play.db.ebean.Model;
 
 /**
  * Created with IntelliJ IDEA.

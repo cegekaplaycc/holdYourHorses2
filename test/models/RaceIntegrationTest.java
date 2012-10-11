@@ -8,7 +8,6 @@ import static play.test.Helpers.running;
 import org.junit.Test;
 
 import com.avaje.ebean.Ebean;
-import play.test.Helpers;
 
 public class RaceIntegrationTest {
 
