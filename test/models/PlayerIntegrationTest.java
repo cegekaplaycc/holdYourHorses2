@@ -12,22 +12,10 @@ import services.ServiceMocker;
 
 import com.avaje.ebean.Ebean;
 
-/**
- * Created with IntelliJ IDEA.
- * Player: jefklak
- * Date: 11/10/12
- * Time: 09:57
- * To change this template use File | Settings | File Templates.
- */
 public class PlayerIntegrationTest {
 
-	@Rule
-	public ServiceMocker serviceMocker = ServiceMocker.create();
-	
     @Test
     public void canBePersisted() {
-    	serviceMocker.mockPlayerFactory();
-    	
         running(fakeApplication(inMemoryDatabase()), new Runnable() {
             public void run() {
                 Player player = new Player();

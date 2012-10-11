@@ -17,14 +17,6 @@ import com.avaje.ebean.Ebean;
 
 public class HorseBreederIntegrationTest {
 
-	@Rule
-	public ServiceMocker serviceMocker = ServiceMocker.create();
-
-	@Before
-	public void setUp() {
-		serviceMocker.mockHorseBreeder();
-	}
-	
 	@Test
 	public void givenNoAvailableHorses_WhenBreedingAvailableHorses_ThenMaxAmountOfHorsesShouldBeAvailable() {
 		running(fakeApplication(), new Runnable() {
