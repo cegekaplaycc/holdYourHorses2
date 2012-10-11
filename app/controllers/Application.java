@@ -17,14 +17,16 @@ public class Application extends Controller {
         Form<Player> playerForm = form(Player.class);
         Form<Player> boundForm = playerForm.bindFromRequest();
         Player player = boundForm.get();
-        if(player.exists()) {
+        if(player.doesPlayerWithSameUsernameAndPasswordExist()) {
+            session("loggedInUser", player.username);
             return dashboard();
         }
        return unauthorized(index.render(boundForm));
     }
 
     public static Result dashboard() {
-        return ok(dashboard.render());
+        Player player = Player.findByUsername(session().get("loggedInUser"));
+        return ok(dashboard.render(player));
     }
 
 }
