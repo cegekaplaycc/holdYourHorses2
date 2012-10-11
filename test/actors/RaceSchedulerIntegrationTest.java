@@ -1,48 +1,52 @@
 package actors;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.joda.time.DateTime.now;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
+import akka.dispatch.Future;
+import akka.pattern.Patterns;
+import akka.pattern.Patterns$;
+import akka.testkit.TestActorRef;
+import akka.util.Duration;
 import models.Race;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
+import play.libs.Akka;
+import scala.actors.threadpool.TimeUnit;
 import util.TheNewAbstractIntegrationTestCase;
-import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.testkit.TestActorRef;
+
+import static java.util.concurrent.TimeUnit.*;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.joda.time.DateTime.now;
 
 public class RaceSchedulerIntegrationTest extends
-		TheNewAbstractIntegrationTestCase {
+        TheNewAbstractIntegrationTestCase {
 
-	private RaceScheduler raceScheduler;
-	private ActorSystem actorSystem;
+    private ActorSystem actorSystem;
 
-	@Before
-	public void initActor() {
-		actorSystem = ActorSystem.apply();
-		TestActorRef<RaceScheduler> actorRef = TestActorRef.apply(new Props(
-				RaceScheduler.class), actorSystem);
-		raceScheduler = actorRef.underlyingActor();
-	}
+    private TestActorRef<RaceScheduler> actorRef;
 
-	@Test
-	public void wanneerDeSchedulerGetriggerdIsWordtErEenRaceAangemaaktMetStartdatumEenWeekInDeToekomst() {
-		test(new Runnable() {
+    @Before
+    public void initActor() {
+        actorSystem = ActorSystem.apply();
+        this.actorRef = TestActorRef.apply(new Props(
+                RaceScheduler.class), actorSystem);
+    }
 
-			@Override
-			public void run() {
-				raceScheduler.onReceive("tick");
+    @Test
+    public void wanneerDeSchedulerGetriggerdIsWordtErEenRaceAangemaaktMetStartdatumEenWeekInDeToekomst() {
+        test(new Runnable() {
 
-				assertThat(Race.find.findUnique().startDate).isEqualTo(
-						now().plusWeeks(1));
-			}
-		});
-	}
+            @Override
+            public void run() {
+                actorRef.tell("");
+                assertThat(Race.find.findUnique().startDate).isEqualTo(now().plusWeeks(1));
+            }
+        });
+    }
 
-	@After
-	public void shutdownActorSystem() {
-		actorSystem.shutdown();
-	}
+    @After
+    public void shutdownActorSystem() {
+        actorSystem.shutdown();
+    }
 }

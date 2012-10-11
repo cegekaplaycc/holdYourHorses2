@@ -32,7 +32,7 @@ public class PlayerIntegrationTest extends TheNewAbstractIntegrationTestCase {
 			public void run() {
 				Player player = new Player("matti", "lollie");
 				player.save();
-				assertThat(new Player("matti", "lollie").exists()).isTrue();
+				assertThat(new Player("matti", "lollie").doesPlayerWithSameUsernameAndPasswordExist()).isTrue();
 			}
 		});
 	}
@@ -44,7 +44,7 @@ public class PlayerIntegrationTest extends TheNewAbstractIntegrationTestCase {
 			public void run() {
 				Player player = new Player("matti", "lollie");
 				player.save();
-				assertThat(new Player("smatsi", "lollie").exists()).isFalse();
+				assertThat(new Player("smatsi", "lollie").doesPlayerWithSameUsernameAndPasswordExist()).isFalse();
 			}
 		});
 	}
@@ -56,7 +56,7 @@ public class PlayerIntegrationTest extends TheNewAbstractIntegrationTestCase {
 			public void run() {
 				Player player = new Player("matti", "lollie");
 				player.save();
-				assertThat(new Player("matti", "sjmollie").exists()).isFalse();
+				assertThat(new Player("matti", "sjmollie").doesPlayerWithSameUsernameAndPasswordExist()).isFalse();
 			}
 		});
 	}

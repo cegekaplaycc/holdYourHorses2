@@ -15,15 +15,18 @@ public class Application extends Controller {
 
     public static Result login() {
         Form<Player> playerForm = form(Player.class);
-        Player player = playerForm.bindFromRequest().get();
-        if(player.exists()) {
-            return dashboard();
+        Form<Player> boundForm = playerForm.bindFromRequest();
+        Player player = boundForm.get();
+        if(player.doesPlayerWithSameUsernameAndPasswordExist()) {
+            session("loggedInUser", player.username);
+            return redirect(routes.Application.dashboard());
         }
-       return unauthorized();
-    }
+       return unauthorized(index.render(boundForm));
+    }    
 
     public static Result dashboard() {
-        return ok(dashboard.render());
+        Player player = Player.findByUsername(session().get("loggedInUser"));
+        return ok(dashboard.render(player));
     }
 
 }

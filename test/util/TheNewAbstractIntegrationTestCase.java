@@ -10,11 +10,12 @@ import static play.test.Helpers.running;
 
 import org.junit.After;
 import org.junit.Before;
+import play.test.FakeApplication;
 
 public abstract class TheNewAbstractIntegrationTestCase {
 
 	public final void test(Runnable testToRun) {
-		running(fakeApplication(inMemoryDatabase()), testToRun);
+        running(fakeApplication(inMemoryDatabase()), testToRun);
 	}
 
 	@Before
