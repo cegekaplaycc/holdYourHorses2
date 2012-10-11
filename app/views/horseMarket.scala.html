@@ -1,0 +1,7 @@
+@(horses: List[Horse])
+
+<ul>
+	@for(horse <- horses){
+		<li>@horse.price</li>
+	}
+</ul>

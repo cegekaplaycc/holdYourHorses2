@@ -31,4 +31,18 @@ public class HorseIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 		});
 	}
+	
+	@Test
+	public void findAllHorses(){
+		test(new Runnable() {
+			public void run() {
+				Horse horse1 = new Horse(20);
+				horse1.save();
+				Horse horse2 = new Horse(20);
+				horse2.save();
+				List<Horse> actual = Horse.findAllHorses();
+				assertThat(actual).containsOnly(horse1, horse2);
+			}
+		});
+	}
 }
