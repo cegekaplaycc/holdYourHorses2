@@ -1,6 +1,6 @@
 package controllers;
 
-import static models.Horse.findAllHorses;
+import static models.Horse.findAvailableHorses;
 
 import java.util.List;
 
@@ -12,19 +12,19 @@ import views.html.horseMarket;
 
 public class HorseMarket extends Controller {
 
-    public static Result show() {
-    	List<Horse> horses = findAllHorses();
-		return ok(horseMarket.render(horses, form(Horse.class)));        
-    }
+	public static Result show() {
+		List<Horse> horses = findAvailableHorses();
+		return ok(horseMarket.render(horses, form(Horse.class)));
+	}
 
-    public static Result buyHorse() {
-        Form<Horse> horseForm = form(Horse.class);
-        Horse horse = horseForm.bindFromRequest().get();
+	public static Result buyHorse() {
+		Form<Horse> horseForm = form(Horse.class);
+		Horse horse = horseForm.bindFromRequest().get();
 
-        // TODO controller / template test
-        // TODO buy horse and redirect to detail page
-        System.out.println(horse.id);
-    	return TODO;        
-    }
+		// TODO controller / template test
+		// TODO buy horse and redirect to detail page
+		System.out.println(horse.id);
+		return TODO;
+	}
 
 }

@@ -43,6 +43,7 @@ public class Player extends Model {
 		}
 
 		horses.add(horse);
+		// TODO cannot do this when horse already has player
 		horse.player = this;
 
 		cashAmount -= horse.price;

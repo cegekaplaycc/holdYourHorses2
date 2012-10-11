@@ -17,21 +17,23 @@ public class Horse extends Model {
 	public String name;
 
 	public final Integer price;
-	
-    @ManyToOne
+
+	@ManyToOne
 	public Player player;
 
 	public Horse(Integer price) {
 		this.price = price;
 	}
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-	private static Finder<Long, Horse> find = new Finder<Long, Horse>(Long.class, Horse.class);
-	
-	public static List<Horse> findAllHorses() {				
+	private static Finder<Long, Horse> find = new Finder<Long, Horse>(
+			Long.class, Horse.class);
+
+	public static List<Horse> findAvailableHorses() {
+		// TODO only available horses
 		return find.all();
 	}
 
