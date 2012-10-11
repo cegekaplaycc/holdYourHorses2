@@ -5,10 +5,7 @@ import static play.test.Helpers.fakeApplication;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 
-import org.junit.Rule;
 import org.junit.Test;
-
-import services.ServiceMocker;
 
 import com.avaje.ebean.Ebean;
 

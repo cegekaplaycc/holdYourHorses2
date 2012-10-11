@@ -7,11 +7,7 @@ import java.util.List;
 
 import models.Horse;
 
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-
-import services.HorseBreeder;
 
 import com.avaje.ebean.Ebean;
 

@@ -7,10 +7,7 @@ import static play.test.Helpers.running;
 
 import java.util.List;
 
-import org.junit.Rule;
 import org.junit.Test;
-
-import services.ServiceMocker;
 
 import com.avaje.ebean.Ebean;
 
