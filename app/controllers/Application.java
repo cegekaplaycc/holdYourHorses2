@@ -9,7 +9,7 @@ import views.html.index;
 public class Application extends Controller {
 
     public static Result index() {
-        return ok(index.render(new Form(Player.class)));
+        return ok(index.render(form(Player.class)));
     }
 
     public static Result login() {

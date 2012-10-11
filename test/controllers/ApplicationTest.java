@@ -1,5 +1,8 @@
 package controllers;
 
+import org.junit.Test;
+import play.test.Helpers;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jefklak
@@ -8,4 +11,9 @@ package controllers;
  * To change this template use File | Settings | File Templates.
  */
 public class ApplicationTest {
+
+    @Test
+    public void loginRedirectsToLoginIfUserNotFound() {
+
+    }
 }
