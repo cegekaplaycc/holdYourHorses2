@@ -10,7 +10,6 @@ import static play.test.Helpers.running;
 
 import org.junit.After;
 import org.junit.Before;
-import play.test.FakeApplication;
 
 public abstract class TheNewAbstractIntegrationTestCase {
 

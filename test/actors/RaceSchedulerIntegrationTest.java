@@ -1,23 +1,17 @@
 package actors;
 
-import akka.actor.ActorSystem;
-import akka.actor.Props;
-import akka.dispatch.Future;
-import akka.pattern.Patterns;
-import akka.pattern.Patterns$;
-import akka.testkit.TestActorRef;
-import akka.util.Duration;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.joda.time.DateTime.now;
 import models.Race;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import play.libs.Akka;
-import scala.actors.threadpool.TimeUnit;
-import util.TheNewAbstractIntegrationTestCase;
 
-import static java.util.concurrent.TimeUnit.*;
-import static org.fest.assertions.Assertions.assertThat;
-import static org.joda.time.DateTime.now;
+import util.TheNewAbstractIntegrationTestCase;
+import akka.actor.ActorSystem;
+import akka.actor.Props;
+import akka.testkit.TestActorRef;
 
 public class RaceSchedulerIntegrationTest extends
         TheNewAbstractIntegrationTestCase {

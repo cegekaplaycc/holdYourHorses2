@@ -10,11 +10,11 @@ import models.Horse;
 
 import org.junit.Test;
 
-import com.google.common.collect.Lists;
-
 import play.data.Form;
 import play.mvc.Content;
 import views.html.horseMarket;
+
+import com.google.common.collect.Lists;
 
 public class HorseMarketTemplateTest {
 

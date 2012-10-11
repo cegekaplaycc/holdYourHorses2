@@ -5,7 +5,6 @@ import static models.Horse.findAllHorses;
 import java.util.List;
 
 import models.Horse;
-import models.Player;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
