@@ -2,6 +2,7 @@ package models;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class HorseIntegrationTest {
 
 	@Test
 	public void canBePersisted() {
-		running(fakeApplication(), new Runnable() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
 			public void run() {
 				Horse horse = new Horse(PRICE_1000);
 				horse.name = JOLLY_JUMPER;

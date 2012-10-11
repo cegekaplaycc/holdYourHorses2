@@ -34,17 +34,12 @@ public class Player extends Model {
         this.password = password;
     }
 
-    public boolean passwordMatches(String password) {
-        return StringUtils.equals(password, this.password);
+    public boolean exists() {
+        Player player = new Finder<Long, Player>(Long.class, Player.class)
+                .where()
+                .eq("username", username)
+                .eq("password", password)
+                .findUnique();
+        return player != null;
     }
-
-    public static Player findByUsername(String username) {
-        Player player = new Finder<Long, Player>(Long.class, Player.class).where().eq("username", username).findUnique();
-        if(player == null) {
-            throw new RuntimeException("Ongeldige user: " + username);
-        }
-
-        return player;
-    }
-
 }
