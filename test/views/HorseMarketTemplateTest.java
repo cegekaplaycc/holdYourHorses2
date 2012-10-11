@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
+import play.data.Form;
 import play.mvc.Content;
 import views.html.horseMarket;
 
@@ -21,11 +22,11 @@ public class HorseMarketTemplateTest {
 	public void renderTemplate() {
 		ArrayList<Horse> horses = Lists.newArrayList(new Horse(20), new Horse(30));
 		
-	    Content html = horseMarket.render(horses);	    
+	    Content html = horseMarket.render(horses, new Form<Horse>(Horse.class));	    
 	    
 	    assertThat(contentType(html)).isEqualTo("text/html");
-	    assertThat(contentAsString(html)).contains("<li>20</li>");
-	    assertThat(contentAsString(html)).contains("<li>30</li>");
+	    assertThat(contentAsString(html)).contains("<td>20</td>");
+	    assertThat(contentAsString(html)).contains("<td>30</td>");
 	}
 	
 }
