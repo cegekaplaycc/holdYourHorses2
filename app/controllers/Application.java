@@ -19,10 +19,10 @@ public class Application extends Controller {
         Player player = boundForm.get();
         if(player.doesPlayerWithSameUsernameAndPasswordExist()) {
             session("loggedInUser", player.username);
-            return dashboard();
+            return redirect(routes.Application.dashboard());
         }
        return unauthorized(index.render(boundForm));
-    }
+    }    
 
     public static Result dashboard() {
         Player player = Player.findByUsername(session().get("loggedInUser"));

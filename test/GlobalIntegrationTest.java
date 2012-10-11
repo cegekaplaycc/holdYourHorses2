@@ -8,9 +8,9 @@ import org.junit.Test;
 import scala.runtime.AbstractFunction0;
 import util.TheNewAbstractIntegrationTestCase;
 import akka.actor.ActorSystem;
+import akka.actor.ActorRef;
 import akka.testkit.TestProbe;
 import akka.util.Duration;
-
 public class GlobalIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	private TestProbe testProbe;

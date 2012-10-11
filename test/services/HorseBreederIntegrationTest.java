@@ -9,6 +9,7 @@ import models.Horse;
 import org.junit.Test;
 
 import util.TheNewAbstractIntegrationTestCase;
+
 import com.avaje.ebean.Ebean;
 
 public class HorseBreederIntegrationTest extends

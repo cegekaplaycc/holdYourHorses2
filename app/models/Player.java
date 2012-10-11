@@ -1,19 +1,28 @@
 package models;
 
+import static javax.persistence.CascadeType.PERSIST;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-import com.avaje.ebean.Ebean;
 import play.db.ebean.Model;
 
 @Entity
 public class Player extends Model {
 
-    @Id
+    private static final int INITIAL_CASH_AMOUNT = 5000;
+    
+	@Id
     public Long id;
     public String username;
     public String password;
+    public int cashAmount;
 
+	@OneToOne(cascade = PERSIST)
+	public Stock stock = new Stock();
+
+    
     public Long getId() {
         return id;
     }
@@ -24,6 +33,7 @@ public class Player extends Model {
     public Player(String username, String password) {
         this.username = username;
         this.password = password;
+        this.cashAmount = INITIAL_CASH_AMOUNT;
     }
 
     public boolean doesPlayerWithSameUsernameAndPasswordExist() {
