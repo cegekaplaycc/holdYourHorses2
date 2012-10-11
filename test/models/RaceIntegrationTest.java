@@ -2,17 +2,19 @@ package models;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.running;
 
 import org.junit.Test;
 
 import com.avaje.ebean.Ebean;
+import play.test.Helpers;
 
 public class RaceIntegrationTest {
 
 	@Test
 	public void canBePersisted() {
-		running(fakeApplication(), new Runnable() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
 			@Override
 			public void run() {
 
@@ -28,7 +30,7 @@ public class RaceIntegrationTest {
 
 	@Test
 	public void weKunnenAlleRacesOphalen() {
-		running(fakeApplication(), new Runnable() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
 			@Override
 			public void run() {
 				saveRaces(12);
