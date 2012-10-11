@@ -1,19 +1,32 @@
 package models;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.inMemoryDatabase;
-import static play.test.Helpers.running;
+import static org.joda.time.DateTime.now;
 
 import org.junit.Test;
 
+import util.TheNewAbstractIntegrationTestCase;
+
 import com.avaje.ebean.Ebean;
 
-public class RaceIntegrationTest {
+public class RaceIntegrationTest extends TheNewAbstractIntegrationTestCase {
+
+	@Test
+	public void persistRaceForNextWeek() {
+		test(new Runnable() {
+			@Override
+			public void run() {
+				Race.persistRaceForNextWeek();
+
+				assertThat(Race.find.findUnique().startDate).isEqualTo(
+						now().plusWeeks(1));
+			}
+		});
+	}
 
 	@Test
 	public void canBePersisted() {
-		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+		test(new Runnable() {
 			@Override
 			public void run() {
 
@@ -29,7 +42,7 @@ public class RaceIntegrationTest {
 
 	@Test
 	public void weKunnenAlleRacesOphalen() {
-		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+		test(new Runnable() {
 			@Override
 			public void run() {
 				saveRaces(12);

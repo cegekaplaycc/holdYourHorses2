@@ -20,6 +20,13 @@ public class Race extends Model {
 
 	public DateTime startDate;
 
+	public static Race persistRaceForNextWeek() {
+		Race race = new Race();
+		race.startDate = new DateTime().plusWeeks(1);
+		race.save();
+		return race;
+	}
+
 	public static List<Race> findAll() {
 		return find.all();
 	}

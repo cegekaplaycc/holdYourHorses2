@@ -1,33 +1,23 @@
 package services;
+
 import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.running;
 
 import java.util.List;
 
 import models.Horse;
 
-import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 
-import services.HorseBreeder;
-
+import util.TheNewAbstractIntegrationTestCase;
 import com.avaje.ebean.Ebean;
 
-public class HorseBreederIntegrationTest {
+public class HorseBreederIntegrationTest extends
+		TheNewAbstractIntegrationTestCase {
 
-	@Rule
-	public ServiceMocker serviceMocker = ServiceMocker.create();
-
-	@Before
-	public void setUp() {
-		serviceMocker.mockHorseBreeder();
-	}
-	
 	@Test
 	public void givenNoAvailableHorses_WhenBreedingAvailableHorses_ThenMaxAmountOfHorsesShouldBeAvailable() {
-		running(fakeApplication(), new Runnable() {
+		test(new Runnable() {
+			@Override
 			public void run() {
 				new HorseBreeder().breedAvailableHorses();
 
@@ -39,7 +29,8 @@ public class HorseBreederIntegrationTest {
 
 	@Test
 	public void givenSomeAvailableHorses_WhenBreedingAvailableHorses_ThenMaxAmountOfHorsesShouldBeAvailable() {
-		running(fakeApplication(), new Runnable() {
+		test(new Runnable() {
+			@Override
 			public void run() {
 				new Horse(580).save();
 

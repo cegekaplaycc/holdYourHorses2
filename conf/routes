@@ -7,6 +7,7 @@
 GET     /                           controllers.Application.index()
 GET     /dashboard                  controllers.Application.dashboard()
 POST    /login                      controllers.Application.login()
+GET     /horseMarket           		controllers.HorseMarket.show()
 
 GET     /@mockups                       controllers.Mockups.dashboard()
 GET     /@mockups/                      controllers.Mockups.dashboard()

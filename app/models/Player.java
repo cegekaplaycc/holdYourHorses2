@@ -5,39 +5,30 @@ import javax.persistence.Id;
 
 import play.db.ebean.Model;
 
-/**
- * Created with IntelliJ IDEA.
- * Player: jefklak
- * Date: 11/10/12
- * Time: 09:51
- * To change this template use File | Settings | File Templates.
- */
 @Entity
 public class Player extends Model {
 
-    @Id
-    public Long id;
-     public String username;
-    public String password;
+	@Id
+	public Long id;
+	public String username;
+	public String password;
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public Player() {
-    }
+	public Player() {
+	}
 
-    public Player(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+	public Player(String username, String password) {
+		this.username = username;
+		this.password = password;
+	}
 
-    public boolean exists() {
-        Player player = new Finder<Long, Player>(Long.class, Player.class)
-                .where()
-                .eq("username", username)
-                .eq("password", password)
-                .findUnique();
-        return player != null;
-    }
+	public boolean exists() {
+		Player player = new Finder<Long, Player>(Long.class, Player.class)
+				.where().eq("username", username).eq("password", password)
+				.findUnique();
+		return player != null;
+	}
 }

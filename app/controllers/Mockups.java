@@ -2,7 +2,13 @@ package controllers;
 
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.mockups.*;
+import views.html.mockups.buySupplies;
+import views.html.mockups.dashboard;
+import views.html.mockups.futureRaceDetail;
+import views.html.mockups.futureRaceOverview;
+import views.html.mockups.horseDetail;
+import views.html.mockups.horseMarket;
+import views.html.mockups.pastRaceDetail;
 
 @SuppressWarnings("UnusedDeclaration")
 public class Mockups extends Controller {
