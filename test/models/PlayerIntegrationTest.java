@@ -1,17 +1,16 @@
 package models;
 
-import com.avaje.ebean.Ebean;
-import junit.framework.Assert;
+import static org.fest.assertions.Assertions.assertThat;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.inMemoryDatabase;
+import static play.test.Helpers.running;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import services.ServiceMocker;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.inMemoryDatabase;
-import static play.test.Helpers.running;
+import com.avaje.ebean.Ebean;
 
 /**
  * Created with IntelliJ IDEA.
