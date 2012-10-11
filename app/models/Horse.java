@@ -21,6 +21,10 @@ public class Horse extends Model {
 		this.price = price;
 	}
 
+    public Long getId() {
+        return id;
+    }
+
 	private static Finder<Long, Horse> find = new Finder<Long, Horse>(Long.class, Horse.class);
 	
 	public static List<Horse> findAllHorses() {				
