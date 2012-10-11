@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import play.db.ebean.Model;
 
@@ -16,6 +17,9 @@ public class Horse extends Model {
 	public String name;
 
 	public final Integer price;
+	
+    @ManyToOne
+	public Player player;
 
 	public Horse(Integer price) {
 		this.price = price;
