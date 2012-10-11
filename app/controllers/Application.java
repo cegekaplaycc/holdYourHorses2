@@ -15,11 +15,12 @@ public class Application extends Controller {
 
     public static Result login() {
         Form<Player> playerForm = form(Player.class);
-        Player player = playerForm.bindFromRequest().get();
+        Form<Player> boundForm = playerForm.bindFromRequest();
+        Player player = boundForm.get();
         if(player.exists()) {
             return dashboard();
         }
-       return unauthorized();
+       return unauthorized(index.render(boundForm));
     }
 
     public static Result dashboard() {
