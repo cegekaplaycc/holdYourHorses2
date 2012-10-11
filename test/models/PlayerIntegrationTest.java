@@ -1,6 +1,7 @@
 package models;
 
 import com.avaje.ebean.Ebean;
+import junit.framework.Assert;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;
@@ -17,16 +18,40 @@ import static play.test.Helpers.running;
 public class PlayerIntegrationTest {
 
     @Test
+    public void findByUsername_ExistingUser() {
+        running(fakeApplication(), new Runnable() {
+            public void run() {
+
+                Player player = new Player("Matti", "lollige broek");
+                player.save();
+
+                assertThat(Player.findByUsername("Matti")).isEqualTo(player);
+            }
+
+        });
+    }
+
+    @Test(expected =  Exception.class)
+    public void findByUsername_NonExistingUser_ThrowsException() {
+        running(fakeApplication(), new Runnable() {
+            public void run() {
+                Player.findByUsername("Matti");
+            }
+
+        });
+    }
+
+    @Test
     public void canBePersisted() {
         running(fakeApplication(), new Runnable() {
             public void run() {
 
                 Player player = new Player();
-                player.name = "Matti";
+                player.username = "Matti";
                 player.save();
 
                 Player refreshedPlayer = Ebean.find(Player.class).findUnique();
-                assertThat(refreshedPlayer.name).isEqualTo("Matti");
+                assertThat(refreshedPlayer.username).isEqualTo("Matti");
             }
 
         });

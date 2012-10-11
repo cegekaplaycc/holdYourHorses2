@@ -1,5 +1,10 @@
-@main("Welcome to Play 2.0") {
-    
-    HELLO!
+@(loginForm: Form[Player])
 
+@main("") {
+
+    @helper.form(action = routes.Application.login()) {
+        @helper.inputText(loginForm("username"))
+        @helper.inputPassword(loginForm("password"))
+        <input type="submit" value="Login" />
+    }
 }
