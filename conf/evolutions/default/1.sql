@@ -10,15 +10,15 @@ create table horse (
   constraint pk_horse primary key (id))
 ;
 
-create table user (
+create table player (
   id                        bigint not null,
   name                      varchar(255),
-  constraint pk_user primary key (id))
+  constraint pk_player primary key (id))
 ;
 
 create sequence horse_seq;
 
-create sequence user_seq;
+create sequence player_seq;
 
 
 
@@ -29,11 +29,11 @@ SET REFERENTIAL_INTEGRITY FALSE;
 
 drop table if exists horse;
 
-drop table if exists user;
+drop table if exists player;
 
 SET REFERENTIAL_INTEGRITY TRUE;
 
 drop sequence if exists horse_seq;
 
-drop sequence if exists user_seq;
+drop sequence if exists player_seq;
 
