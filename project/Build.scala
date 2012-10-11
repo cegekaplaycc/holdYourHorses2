@@ -12,6 +12,7 @@ object ApplicationBuild extends Build {
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = JAVA).settings(
+      ebeanEnabled:=true
       // Add your own project settings here      
     )
 

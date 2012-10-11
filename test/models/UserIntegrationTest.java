@@ -1,6 +1,13 @@
 package models;
 
+import com.avaje.ebean.Ebean;
+import org.fest.assertions.Assertions;
 import org.junit.Test;
+import play.test.Helpers;
+
+import static org.fest.assertions.Assertions.assertThat;
+import static play.test.Helpers.fakeApplication;
+import static play.test.Helpers.running;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,4 +18,19 @@ import org.junit.Test;
  */
 public class UserIntegrationTest {
 
+    @Test
+    public void canBePersisted() {
+        running(fakeApplication(), new Runnable() {
+            public void run() {
+
+                User user = new User();
+                user.name = "Matti";
+                user.save();
+
+                User refreshedUser = Ebean.find(User.class).findUnique();
+                assertThat(refreshedUser.name).isEqualTo("Matti");
+            }
+
+        });
     }
+}
