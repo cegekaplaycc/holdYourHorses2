@@ -11,5 +11,3 @@ tmp
 test-result
 eclipse
 server.pid
-
-*.sql
