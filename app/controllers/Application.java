@@ -13,6 +13,10 @@ public class Application extends Controller {
     }
 
     public static Result login() {
+
+        Form<Player> playerForm = form(Player.class);
+        Player player = playerForm.bindFromRequest().get();
+
         return null;
     }
 
