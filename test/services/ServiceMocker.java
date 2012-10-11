@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 public class ServiceMocker extends ExternalResource {
 
 	private HorseBreeder originalHorseBreeder;
+	private PlayerFactory originalPlayerFactory;
 	
 	public static ServiceMocker create() {
 		return new ServiceMocker();
@@ -14,15 +15,21 @@ public class ServiceMocker extends ExternalResource {
 	@Override
 	protected void before() throws Throwable {
 		originalHorseBreeder = ServiceLocator.horseBreeder;
+		originalPlayerFactory = ServiceLocator.playerFactory;
 	}
 
 	@Override
 	protected void after() {
 		ServiceLocator.horseBreeder = originalHorseBreeder;
+		ServiceLocator.playerFactory = originalPlayerFactory;
 	}
 	
-	public void mockRandomHorseBreeder() {
+	public void mockHorseBreeder() {
 		ServiceLocator.horseBreeder = Mockito.mock(HorseBreeder.class);
+	}
+
+	public void mockPlayerFactory() {
+		ServiceLocator.playerFactory = Mockito.mock(PlayerFactory.class);
 	}
 	
 }
