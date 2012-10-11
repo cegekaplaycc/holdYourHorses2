@@ -19,9 +19,8 @@ public class HorseIntegrationTest {
 	public void canBePersisted() {
 		running(fakeApplication(), new Runnable() {
 			public void run() {
-				Horse horse = new Horse();
+				Horse horse = new Horse(PRICE_1000);
 				horse.name = JOLLY_JUMPER;
-				horse.price = PRICE_1000;
 				horse.save();
 
 				List<Horse> horses = Ebean.find(Horse.class).findList();
