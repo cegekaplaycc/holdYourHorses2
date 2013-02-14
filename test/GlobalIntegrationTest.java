@@ -8,9 +8,9 @@ import org.junit.Test;
 import scala.runtime.AbstractFunction0;
 import util.TheNewAbstractIntegrationTestCase;
 import akka.actor.ActorSystem;
-import akka.actor.ActorRef;
 import akka.testkit.TestProbe;
 import akka.util.Duration;
+
 public class GlobalIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	private TestProbe testProbe;
@@ -29,13 +29,8 @@ public class GlobalIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	@Test
 	public void ensureRaceSchedulerRegisteredInAkkaSystem() {
-		test(new Runnable() {
-			@Override
-			public void run() {
-				new Global().executeOnStart();
-				assert1RaceIsScheduled();
-			}
-		});
+		new Global().executeOnStart();
+		assert1RaceIsScheduled();
 
 	}
 

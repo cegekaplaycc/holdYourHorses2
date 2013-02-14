@@ -10,16 +10,12 @@ import org.junit.Test;
 import play.mvc.Result;
 import util.TheNewAbstractIntegrationTestCase;
 
-public class HorseMarketTest extends TheNewAbstractIntegrationTestCase {
+public class HorseMarketIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	@Test
 	public void show() {
-		test(new Runnable() {
-			public void run() {
-				Result result = callAction(HorseMarket.show());
-				assertThat(status(result)).isEqualTo(200);
-			}
-		});
+		Result result = callAction(HorseMarket.show());
+		assertThat(status(result)).isEqualTo(200);
 	}
 
 }

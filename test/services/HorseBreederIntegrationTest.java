@@ -12,35 +12,24 @@ import util.TheNewAbstractIntegrationTestCase;
 
 import com.avaje.ebean.Ebean;
 
-public class HorseBreederIntegrationTest extends
-		TheNewAbstractIntegrationTestCase {
+public class HorseBreederIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	@Test
 	public void givenNoAvailableHorses_WhenBreedingAvailableHorses_ThenMaxAmountOfHorsesShouldBeAvailable() {
-		test(new Runnable() {
-			@Override
-			public void run() {
-				new HorseBreeder().breedAvailableHorses();
+		new HorseBreeder().breedAvailableHorses();
 
-				List<Horse> result = Ebean.find(Horse.class).findList();
-				assertThat(result).hasSize(HorseBreeder.MAX_AVAILABLE_HORSES);
-			}
-		});
+		List<Horse> result = Ebean.find(Horse.class).findList();
+		assertThat(result).hasSize(HorseBreeder.MAX_AVAILABLE_HORSES);
 	}
 
 	@Test
 	public void givenSomeAvailableHorses_WhenBreedingAvailableHorses_ThenMaxAmountOfHorsesShouldBeAvailable() {
-		test(new Runnable() {
-			@Override
-			public void run() {
-				new Horse(580).save();
+		new Horse(580).save();
 
-				new HorseBreeder().breedAvailableHorses();
+		new HorseBreeder().breedAvailableHorses();
 
-				List<Horse> result = Ebean.find(Horse.class).findList();
-				assertThat(result).hasSize(HorseBreeder.MAX_AVAILABLE_HORSES);
-			}
-		});
+		List<Horse> result = Ebean.find(Horse.class).findList();
+		assertThat(result).hasSize(HorseBreeder.MAX_AVAILABLE_HORSES);
 	}
 
 }

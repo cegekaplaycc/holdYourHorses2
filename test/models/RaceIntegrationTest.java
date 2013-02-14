@@ -13,43 +13,24 @@ public class RaceIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	@Test
 	public void persistRaceForNextWeek() {
-		test(new Runnable() {
-			@Override
-			public void run() {
-				Race.persistRaceForNextWeek();
+		Race.persistRaceForNextWeek();
 
-				assertThat(Race.find.findUnique().startDate).isEqualTo(
-						now().plusWeeks(1));
-			}
-		});
+		assertThat(Race.find.findUnique().startDate).isEqualTo(now().plusWeeks(1));
 	}
 
 	@Test
 	public void canBePersisted() {
-		test(new Runnable() {
-			@Override
-			public void run() {
+		Race race = new Race();
+		race.save();
 
-				Race race = new Race();
-				race.save();
-
-				Race refreshedRace = Ebean.find(Race.class).findUnique();
-				assertThat(refreshedRace.id).isEqualTo(race.id);
-			}
-
-		});
+		Race refreshedRace = Ebean.find(Race.class).findUnique();
+		assertThat(refreshedRace.id).isEqualTo(race.id);
 	}
 
 	@Test
 	public void weKunnenAlleRacesOphalen() {
-		test(new Runnable() {
-			@Override
-			public void run() {
-				saveRaces(12);
-				assertThat(Race.findAll()).hasSize(12);
-			}
-
-		});
+		saveRaces(12);
+		assertThat(Race.findAll()).hasSize(12);
 	}
 
 	private void saveRaces(int number) {

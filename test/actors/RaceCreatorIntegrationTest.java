@@ -13,8 +13,7 @@ import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.testkit.TestActorRef;
 
-public class RaceCreatorIntegrationTest extends
-		TheNewAbstractIntegrationTestCase {
+public class RaceCreatorIntegrationTest extends TheNewAbstractIntegrationTestCase {
 
 	private ActorSystem actorSystem;
 
@@ -23,21 +22,13 @@ public class RaceCreatorIntegrationTest extends
 	@Before
 	public void initActor() {
 		actorSystem = ActorSystem.apply();
-		actorRef = TestActorRef.apply(new Props(RaceCreator.class),
-				actorSystem);
+		actorRef = TestActorRef.apply(new Props(RaceCreator.class), actorSystem);
 	}
 
 	@Test
 	public void wanneerDeSchedulerGetriggerdIsWordtErEenRaceAangemaaktMetStartdatumEenWeekInDeToekomst() {
-		test(new Runnable() {
-
-			@Override
-			public void run() {
-				actorRef.tell("tick");
-				assertThat(Race.find.findUnique().startDate).isEqualTo(
-						now().plusWeeks(1));
-			}
-		});
+		actorRef.tell("tick");
+		assertThat(Race.find.findUnique().startDate).isEqualTo(now().plusWeeks(1));
 	}
 
 	@After
