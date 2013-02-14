@@ -24,8 +24,12 @@
             </tr>
             </thead>
             <tbody>
-            @player.stock.food.keySet
-            
+            @for(singleFoodItem <- player.stock.getFoodItems()) {
+            	<tr>
+					<td>@singleFoodItem.getType().label</td>
+					<td>@singleFoodItem.getAmount()</td>
+				</tr>
+			} 
             </tbody>
         </table>
     </div>

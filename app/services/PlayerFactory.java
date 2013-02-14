@@ -14,7 +14,7 @@ public class PlayerFactory {
         Ebean.saveAssociation(player, "stock");
         if(!player.doesPlayerWithSameUsernameAndPasswordExist()){
             player.save();
-        }
+        } 
 	}
 	
 }
