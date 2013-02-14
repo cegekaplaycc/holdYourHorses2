@@ -30,6 +30,15 @@ public class PlayerTest {
 
 		assertThat(player.cashAmount).isEqualTo(20);
 	}
+	
+	@Test
+	public void getBoxNumber_indexOfHorseInListPlus1(){
+		Player player = new Player();
+		Horse horse = new Horse(12);
+		player.horses.add(horse);
+		
+		assertThat(player.getBoxNumber(horse)).isEqualTo(1);
+	}
 
 	@Test(expected = HoldYourHorsesException.class)
 	public void buyHorse_ThrowsExceptionWhenPlayerCashAmountIsInsufficient() {
