@@ -36,7 +36,7 @@ public class HorseMarketIntegrationTest extends TheNewAbstractIntegrationTestCas
 				.withFormUrlEncodedBody(data));
 
 		Player fetchedPlayer = Player.findByUsername("tim");
-		assertThat(fetchedPlayer.getHorses()).containsOnly(horse);
+		assertThat(fetchedPlayer.horses).containsOnly(horse);
 		assertThat(fetchedPlayer.cashAmount).isEqualTo(4900);
 
 		Horse fetchedHorse = Ebean.find(Horse.class, horse.id);

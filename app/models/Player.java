@@ -1,9 +1,8 @@
 package models;
 
-import static com.google.common.collect.Sets.newHashSet;
 import static javax.persistence.CascadeType.PERSIST;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +10,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import play.db.ebean.Model;
+
+import com.google.common.collect.Lists;
+
 import exceptions.HoldYourHorsesException;
 
 @Entity
@@ -25,21 +27,13 @@ public class Player extends Model {
 	public int cashAmount;
 
 	@OneToMany(mappedBy = "player")
-	private Set<Horse> horses = newHashSet();
+	public List<Horse> horses = Lists.newArrayList();
 
 	@OneToOne(cascade = PERSIST)
 	public Stock stock = new Stock();
 
 	public Long getId() {
 		return id;
-	}
-
-	public Set<Horse> getHorses() {
-		return horses;
-	}
-
-	public void setHorses(Set<Horse> horses) {
-		this.horses = horses;
 	}
 
 	public Player() {
@@ -67,6 +61,10 @@ public class Player extends Model {
 		this.username = username;
 		this.password = password;
 		this.cashAmount = INITIAL_CASH_AMOUNT;
+	}
+
+	public int getBoxNumber(Horse horse) {
+		return horses.indexOf(horse) + 1;
 	}
 
 	public boolean doesPlayerWithSameUsernameAndPasswordExist() {

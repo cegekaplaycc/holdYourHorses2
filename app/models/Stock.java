@@ -1,16 +1,15 @@
 package models;
 
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 
-import play.db.ebean.Model;
 
-import com.google.common.collect.Maps;
+import play.db.ebean.Model;
 
 @Entity
 public class Stock extends Model {
@@ -18,23 +17,29 @@ public class Stock extends Model {
 	@Id
 	public Long id;
 
-	public Map<FoodType, Integer> food = Maps.newHashMap();
-
+	@OneToMany(cascade=CascadeType.ALL)
+	private Set<Food> foodItems = new HashSet<Food>();
+	
 	public Long getId() {
 		return id;
 	}
 
-	public Stock add(FoodType foodType, Integer amount) {
-		if (food.get(foodType) == null) {
-			food.put(foodType, amount);
-		} else {
-			food.put(foodType, food.get(foodType) + amount);
-		}
-		return this;
+	public Set<Food> getFoodItems() {
+		return foodItems;
 	}
 	
-	public Set<FoodType> getFoodTypes(){
-		return food.keySet();
+	public void setFoodItems(Set<Food> food) {
+		this.foodItems = food;
 	}
 
+	public void add(FoodType type, int amount) {
+		for (Food singleFood: foodItems) {
+			if(singleFood.getType().equals(type)){
+				singleFood.setAmount(singleFood.getAmount() + amount);
+				return;
+			}
+		}
+		foodItems.add(new Food(type, amount));
+	}
+	
 }

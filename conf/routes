@@ -9,6 +9,7 @@ GET     /dashboard                  controllers.Application.dashboard()
 POST    /login                      controllers.Application.login()
 GET     /horseMarket           		controllers.HorseMarket.show()
 POST    /buyHorse					controllers.HorseMarket.buyHorse()
+GET		/horseDetail/:id			controllers.HorseDetail.showHorse(id: Long)
 
 GET     /@mockups                       controllers.Mockups.dashboard()
 GET     /@mockups/                      controllers.Mockups.dashboard()

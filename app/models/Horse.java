@@ -45,11 +45,15 @@ public class Horse extends Model {
 			throw new IllegalArgumentException("paard of id ontbreekt!");
 		}
 
-		Horse refreshedHorse = find.byId(horse.id);
+		Horse refreshedHorse = findById(horse.id);
 		if (refreshedHorse == null) {
 			throw new IllegalArgumentException("Kon het paard met id " + horse.id + " niet verversen");
 		}
 		return refreshedHorse;
+	}
+
+	public static Horse findById(Long horseId) {
+		return find.byId(horseId);
 	}
 
 }

@@ -1,0 +1,74 @@
+@(horse: Horse)
+
+@main("Horse Detail") {
+
+
+<div class="page-header">
+    <h1>
+        @horse.name
+        <small>BOX @horse.player.getBoxNumber(horse)</small>
+    </h1>
+</div>
+
+<div class="row">
+
+    <div class="span6">
+        <h2>Stats</h2>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>Overall Fitness</td>
+                <td>TODO</td>
+            </tr>
+            <tr>
+                <td>Training Level</td>
+                <td>TODO</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="span6">
+        <h2>&nbsp;</h2>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>Food</td>
+                <td>TODO<i class="icon-pencil pull-right"></i></td>
+            </tr>
+            <tr>
+                <td>Trainer</td>
+                <td>TODO<i class="icon-pencil pull-right"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="span6">
+        <h2>Races</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="#">TODO</a></td>
+                <td>TODO</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+
+}
