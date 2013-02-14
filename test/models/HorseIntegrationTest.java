@@ -53,12 +53,22 @@ public class HorseIntegrationTest extends TheNewAbstractIntegrationTestCase {
 	public void refreshHorseNull() {
 		Horse.refresh((Horse) null);
 	}
+	
+	@Test
+	public void findById(){
+		Horse horse1 = new Horse(10);
+		horse1.save();
+		Horse horse2 = new Horse(10);
+		horse2.save();
+		
+		assertThat(Horse.findById(horse1.id)).isEqualTo(horse1);
+	}
 
 	@Test
 	public void findAvailableHorses() {
-		Horse horse1 = new Horse(20);
+		Horse horse1 = new HorseBuilder().build();
 		horse1.save();
-		Horse horse2 = new Horse(20);
+		Horse horse2 = new HorseBuilder().build();
 		horse2.save();
 		List<Horse> actual = Horse.findAvailableHorses();
 		assertThat(actual).containsOnly(horse1, horse2);
