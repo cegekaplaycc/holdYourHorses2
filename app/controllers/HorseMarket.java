@@ -5,6 +5,7 @@ import static models.Horse.findAvailableHorses;
 import java.util.List;
 
 import models.Horse;
+import models.Player;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -19,12 +20,16 @@ public class HorseMarket extends Controller {
 
 	public static Result buyHorse() {
 		Form<Horse> horseForm = form(Horse.class);
-		Horse horse = horseForm.bindFromRequest().get();
+		Horse horse = Horse.refresh(horseForm.bindFromRequest().get());
 
-		// TODO controller / template test
-		// TODO buy horse and redirect to detail page
-		System.out.println(horse.id);
+		Player loggedInPlayer = Player.findByUsername(session("loggedInUser"));
+		loggedInPlayer.buyHorse(horse);
+
+		// Ebean.saveAssociation(loggedInPlayer, "horses");
+		horse.save();
+		loggedInPlayer.save();
+
+		// TODO redirect to detail page
 		return TODO;
 	}
-
 }

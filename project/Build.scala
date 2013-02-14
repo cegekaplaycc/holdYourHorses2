@@ -9,6 +9,7 @@ object ApplicationBuild extends Build {
 
     val appDependencies = Seq(
       "commons-io" % "commons-io" % "2.4",
+      "commons-lang" % "commons-lang" % "2.6",
       "postgresql" % "postgresql" % "9.1-901-1.jdbc4",
       "com.typesafe.akka" % "akka-testkit" % "2.0.2" % "test",      
       "org.mockito" % "mockito-all" % "1.9.0" % "test"

@@ -1,5 +1,6 @@
 package services;
 
+import static org.apache.commons.lang.RandomStringUtils.randomAlphabetic;
 import models.Horse;
 
 public class HorseBreeder {
@@ -10,7 +11,9 @@ public class HorseBreeder {
 	public void breedAvailableHorses() {
 		final int numberOfHorsesToBreed = determineNumberOfHorsesToBreed();
 		for (int i = 0; i < numberOfHorsesToBreed; i++) {
-			new Horse(INITIAL_PRICE).save();
+			Horse horse = new Horse(INITIAL_PRICE);
+			horse.name = "Horse " + randomAlphabetic(6);
+			horse.save();
 		}
 	}
 

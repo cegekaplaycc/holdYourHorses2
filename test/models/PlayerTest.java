@@ -16,7 +16,7 @@ public class PlayerTest {
 
 		player.buyHorse(horse);
 
-		assertThat(player.horses).containsOnly(horse);
+		assertThat(player.getHorses()).containsOnly(horse);
 		assertThat(horse.player).isSameAs(player);
 	}
 

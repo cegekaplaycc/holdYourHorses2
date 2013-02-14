@@ -32,10 +32,10 @@ public class HorseIntegrationTest extends TheNewAbstractIntegrationTestCase {
 		Horse persistedHorse = new HorseBuilder().withName("boe").build();
 		persistedHorse.save();
 
-		Horse staleHorse = new HorseBuilder().withId(persistedHorse.getId()).build();
+		Horse staleHorse = new HorseBuilder().withId(persistedHorse.id).build();
 		Horse refreshedHorse = Horse.refresh(staleHorse);
 
-		assertThat(refreshedHorse.getId()).isEqualTo(persistedHorse.getId());
+		assertThat(refreshedHorse.id).isEqualTo(persistedHorse.id);
 		assertThat(refreshedHorse.name).isEqualTo("boe");
 	}
 

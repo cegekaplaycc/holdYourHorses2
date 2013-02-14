@@ -25,13 +25,21 @@ public class Player extends Model {
 	public int cashAmount;
 
 	@OneToMany(mappedBy = "player")
-	public Set<Horse> horses = newHashSet();
+	private Set<Horse> horses = newHashSet();
 
 	@OneToOne(cascade = PERSIST)
 	public Stock stock = new Stock();
 
 	public Long getId() {
 		return id;
+	}
+
+	public Set<Horse> getHorses() {
+		return horses;
+	}
+
+	public void setHorses(Set<Horse> horses) {
+		this.horses = horses;
 	}
 
 	public Player() {

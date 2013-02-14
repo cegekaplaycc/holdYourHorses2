@@ -29,6 +29,10 @@ public class Horse extends Model {
 		return id;
 	}
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	private static Finder<Long, Horse> find = new Finder<Long, Horse>(Long.class, Horse.class);
 
 	public static List<Horse> findAvailableHorses() {

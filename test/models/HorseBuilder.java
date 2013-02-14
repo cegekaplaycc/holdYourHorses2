@@ -15,6 +15,11 @@ public class HorseBuilder {
 		return horse;
 	}
 
+	public HorseBuilder withDefaults() {
+		this.price = 100;
+		return this;
+	}
+
 	public HorseBuilder withName(String name) {
 		this.name = name;
 		return this;
