@@ -34,6 +34,55 @@ public class HorseIntegrationTest extends TheNewAbstractIntegrationTestCase {
 	}
 
 	@Test
+	public void refreshHorse() {
+		test(new Runnable() {
+			public void run() {
+				Horse persistedHorse = new HorseBuilder().withName("boe").build();
+				persistedHorse.save();
+
+				Horse staleHorse = new HorseBuilder().withId(persistedHorse.getId()).build();
+				Horse refreshedHorse = Horse.refresh(staleHorse);
+
+				assertThat(refreshedHorse.getId()).isEqualTo(persistedHorse.getId());
+				assertThat(refreshedHorse.name).isEqualTo("boe");
+			}
+		});
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void refreshHorseDatNietBestaat() {
+		test(new Runnable() {
+
+			@Override
+			public void run() {
+				Horse.refresh(new HorseBuilder().withId(123456789L).build());
+			}
+		});
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void refreshHorseZonderId() {
+		test(new Runnable() {
+
+			@Override
+			public void run() {
+				Horse.refresh(new HorseBuilder().withId(null).build());
+			}
+		});
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void refreshHorseNull() {
+		test(new Runnable() {
+
+			@Override
+			public void run() {
+				Horse.refresh((Horse) null);
+			}
+		});
+	}
+
+	@Test
 	public void findAvailableHorses() {
 		test(new Runnable() {
 			public void run() {

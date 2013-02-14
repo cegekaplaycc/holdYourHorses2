@@ -26,32 +26,37 @@ import com.google.common.collect.Maps;
 
 public class ApplicationTest {
 
-    @Test
-    public void loginRedirectsToLoginIfUserNotFound() {
-        running(fakeApplication(inMemoryDatabase()), new Runnable() {
-            public void run() {
-                Map<String, String> submittedData = Maps.newHashMap();
-                submittedData.put("username","kaatb");
-                submittedData.put("password","kaatc");
-                Result result = callAction(controllers.routes.ref.Application.login(), Helpers.fakeRequest().withFormUrlEncodedBody(submittedData));
-                assertThat(status(result)).isEqualTo(UNAUTHORIZED);
-            }
-        });
-    }
+	@Test
+	public void loginRedirectsToLoginIfUserNotFound() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+			public void run() {
+				Map<String, String> submittedData = Maps.newHashMap();
+				submittedData.put("username", "kaatb");
+				submittedData.put("password", "kaatc");
+				Result result = callAction(
+						controllers.routes.ref.Application.login(),
+						Helpers.fakeRequest().withFormUrlEncodedBody(
+								submittedData));
+				assertThat(status(result)).isEqualTo(UNAUTHORIZED);
+			}
+		});
+	}
 
-    @Test
-    @Ignore
-    public void loginRedirectsToDashboardIfUserExists() {
-        running(fakeApplication(inMemoryDatabase()), new Runnable() {
-            public void run() {
-                new Player("matti", "smatti").save();
-                Map<String, String> submittedData = Maps.newHashMap();
-                submittedData.put("username","matti");
-                submittedData.put("password","smatti");
-                Result result = routeAndCall(fakeRequest(POST, "/login").withFormUrlEncodedBody(submittedData));
-                assertThat(status(result)).isEqualTo(OK);
-                assertThat(Helpers.contentAsString(result)).contains("jeuj");
-            }
-        });
-    }
+	@Test
+	@Ignore
+	// TODO unignore this test!
+	public void loginRedirectsToDashboardIfUserExists() {
+		running(fakeApplication(inMemoryDatabase()), new Runnable() {
+			public void run() {
+				new Player("matti", "smatti").save();
+				Map<String, String> submittedData = Maps.newHashMap();
+				submittedData.put("username", "matti");
+				submittedData.put("password", "smatti");
+				Result result = routeAndCall(fakeRequest(POST, "/login")
+						.withFormUrlEncodedBody(submittedData));
+				assertThat(status(result)).isEqualTo(OK);
+				assertThat(Helpers.contentAsString(result)).contains("jeuj");
+			}
+		});
+	}
 }

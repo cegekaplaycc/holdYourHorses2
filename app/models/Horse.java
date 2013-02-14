@@ -29,12 +29,23 @@ public class Horse extends Model {
 		return id;
 	}
 
-	private static Finder<Long, Horse> find = new Finder<Long, Horse>(
-			Long.class, Horse.class);
+	private static Finder<Long, Horse> find = new Finder<Long, Horse>(Long.class, Horse.class);
 
 	public static List<Horse> findAvailableHorses() {
 		// TODO only available horses
 		return find.all();
+	}
+
+	public static Horse refresh(Horse horse) {
+		if (horse == null || horse.id == null) {
+			throw new IllegalArgumentException("paard of id ontbreekt!");
+		}
+
+		Horse refreshedHorse = find.byId(horse.id);
+		if (refreshedHorse == null) {
+			throw new IllegalArgumentException("Kon het paard met id " + horse.id + " niet verversen");
+		}
+		return refreshedHorse;
 	}
 
 }
